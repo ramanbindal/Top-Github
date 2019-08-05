@@ -2,6 +2,7 @@ package com.example.cleanarchitecture_mvvm.ui.main;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.example.cleanarchitecture_mvvm.MainApplication;
 import com.example.cleanarchitecture_mvvm.R;
 import com.example.cleanarchitecture_mvvm.base.BaseActivity;
+import com.example.cleanarchitecture_mvvm.ui.DetailActivity;
 import com.example.domain.model.Repository;
 
 import java.util.List;
@@ -81,6 +83,8 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MainNav
 
     @Override
     public void onItemClick(Repository repository) {
-        
+        Intent i = new Intent(MainActivity.this, DetailActivity.class);
+        i.putExtra("repoDetail", repository);
+        startActivity(i);
     }
 }

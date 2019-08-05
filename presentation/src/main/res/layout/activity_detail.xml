@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".ui.DetailActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/activity_detail_iv"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/activity_detail_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_iv"
+        android:layout_marginTop="30dp"
+        android:text="UserName : "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/activity_detail_username_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_iv"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/activity_detail_username"
+        android:text="value" />
+
+    <TextView
+        android:id="@+id/activity_detail_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_username"
+        android:layout_marginTop="10dp"
+        android:text="Name : "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/activity_detail_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_username"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/activity_detail_name"
+        android:text="value" />
+
+    <TextView
+        android:id="@+id/activity_detail_userurl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_name"
+        android:layout_marginTop="10dp"
+        android:text="User Url : "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/activity_detail_userurl_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_name"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/activity_detail_userurl"
+        android:text="value" />
+
+    <TextView
+        android:id="@+id/activity_detail_repo_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_userurl"
+        android:layout_marginTop="10dp"
+        android:text="Repo Name : "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/activity_detail_repo_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_userurl"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/activity_detail_repo_name"
+        android:text="value" />
+
+
+    <TextView
+        android:id="@+id/activity_detail_repo_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_repo_name"
+        android:layout_marginTop="10dp"
+        android:text="Repo Description : "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/activity_detail_repo_desc_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_repo_name"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/activity_detail_repo_desc"
+        android:text="value" />
+
+
+
+    <TextView
+        android:id="@+id/activity_detail_repo_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_repo_desc"
+        android:layout_marginTop="10dp"
+        android:text="Repo Url : "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/activity_detail_repo_url_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_detail_repo_desc"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/activity_detail_repo_url"
+        android:text="value" />
+
+</RelativeLayout>
