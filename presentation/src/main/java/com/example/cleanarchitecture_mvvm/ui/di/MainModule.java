@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModelProvider;
 
 import com.example.cleanarchitecture_mvvm.base.ViewModelProviderFactory;
 import com.example.cleanarchitecture_mvvm.ui.main.MainViewModel;
-import com.example.domain.usecases.GetSum;
+import com.example.domain.usecases.FetchDataUseCase;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,8 +13,8 @@ import dagger.Provides;
 public class MainModule {
 
     @Provides
-    MainViewModel provideMainViewModel(GetSum getSumUseCase) {
-        return new MainViewModel(getSumUseCase);
+    MainViewModel provideMainViewModel(FetchDataUseCase fetchDataUseCase) {
+        return new MainViewModel(fetchDataUseCase);
     }
 
     @Provides
