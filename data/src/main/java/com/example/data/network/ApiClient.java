@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ApiClient {
-    private static String SERVER_BASE_URL = "http://dev.xshowroom.in:8080/services/api/v1/";
+    private static String SERVER_BASE_URL = "https://github-trending-api.now.sh";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
