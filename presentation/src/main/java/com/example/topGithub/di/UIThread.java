@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture_mvvm.di;
+package com.example.topGithub.di;
 
 import com.example.domain.executor.PostExecutionThread;
 

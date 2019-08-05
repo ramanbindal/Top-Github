@@ -1,10 +1,10 @@
-package com.example.cleanarchitecture_mvvm;
+package com.example.topGithub;
 
 import android.app.Application;
 
-import com.example.cleanarchitecture_mvvm.di.AppModule;
-import com.example.cleanarchitecture_mvvm.di.DaggerMyComponent;
-import com.example.cleanarchitecture_mvvm.di.MyComponent;
+import com.example.topGithub.di.AppModule;
+import com.example.topGithub.di.DaggerMyComponent;
+import com.example.topGithub.di.MyComponent;
 
 public class MainApplication extends Application {
 

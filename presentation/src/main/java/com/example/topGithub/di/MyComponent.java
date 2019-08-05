@@ -1,8 +1,8 @@
-package com.example.cleanarchitecture_mvvm.di;
+package com.example.topGithub.di;
 
 
-import com.example.cleanarchitecture_mvvm.ui.di.MainModule;
-import com.example.cleanarchitecture_mvvm.ui.main.MainActivity;
+import com.example.topGithub.ui.di.MainModule;
+import com.example.topGithub.ui.main.MainActivity;
 
 import javax.inject.Singleton;
 

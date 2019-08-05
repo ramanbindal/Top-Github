@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture_mvvm.ui;
+package com.example.topGithub.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.cleanarchitecture_mvvm.R;
+import com.example.topGithub.R;
 import com.example.domain.model.Repository;
 
 public class DetailActivity extends AppCompatActivity {

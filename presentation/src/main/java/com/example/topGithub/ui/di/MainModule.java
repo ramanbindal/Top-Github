@@ -1,9 +1,9 @@
-package com.example.cleanarchitecture_mvvm.ui.di;
+package com.example.topGithub.ui.di;
 
 import android.arch.lifecycle.ViewModelProvider;
 
-import com.example.cleanarchitecture_mvvm.base.ViewModelProviderFactory;
-import com.example.cleanarchitecture_mvvm.ui.main.MainViewModel;
+import com.example.topGithub.base.ViewModelProviderFactory;
+import com.example.topGithub.ui.main.MainViewModel;
 import com.example.domain.usecases.FetchDataUseCase;
 
 import dagger.Module;

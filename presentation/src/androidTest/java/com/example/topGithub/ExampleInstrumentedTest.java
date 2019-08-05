@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture_mvvm;
+package com.example.topGithub;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

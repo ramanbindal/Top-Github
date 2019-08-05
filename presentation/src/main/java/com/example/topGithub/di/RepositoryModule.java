@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture_mvvm.di;
+package com.example.topGithub.di;
 
 import android.content.Context;
 

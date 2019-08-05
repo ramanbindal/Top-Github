@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture_mvvm.ui.main;
+package com.example.topGithub.ui.main;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -11,10 +11,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.cleanarchitecture_mvvm.MainApplication;
-import com.example.cleanarchitecture_mvvm.R;
-import com.example.cleanarchitecture_mvvm.base.BaseActivity;
-import com.example.cleanarchitecture_mvvm.ui.DetailActivity;
+import com.example.topGithub.MainApplication;
+import com.example.topGithub.R;
+import com.example.topGithub.base.BaseActivity;
+import com.example.topGithub.ui.DetailActivity;
 import com.example.domain.model.Repository;
 
 import java.util.List;
@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MainNav
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ((MainApplication) getApplicationContext()).getComponent().inject(this);
 
 

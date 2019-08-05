@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture_mvvm.di;
+package com.example.topGithub.di;
 
 import android.content.Context;
 
@@ -42,7 +42,7 @@ public class AppModule {
     @Provides
     @Singleton
     ApiInterface provideApiInterface() {
-        return ApiClient.getClient().create(ApiInterface.class);
+        return ApiClient.getClient(context).create(ApiInterface.class);
     }
 
     @Provides

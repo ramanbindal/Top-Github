@@ -1,6 +1,6 @@
-package com.example.cleanarchitecture_mvvm.ui.main;
+package com.example.topGithub.ui.main;
 
-import com.example.cleanarchitecture_mvvm.base.BaseViewModel;
+import com.example.topGithub.base.BaseViewModel;
 import com.example.domain.model.Repository;
 import com.example.domain.usecases.FetchDataUseCase;
 

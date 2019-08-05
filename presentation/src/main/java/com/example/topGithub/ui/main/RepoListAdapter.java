@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture_mvvm.ui.main;
+package com.example.topGithub.ui.main;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.cleanarchitecture_mvvm.R;
+import com.example.topGithub.R;
 import com.example.domain.model.Repository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture_mvvm.ui.main;
+package com.example.topGithub.ui.main;
 
 import com.example.domain.model.Repository;
 
