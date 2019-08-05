@@ -4,16 +4,15 @@ import android.content.Context;
 
 import com.example.data.data.SampleRoomDatabase;
 import com.example.data.data.dao.SampleDao;
-import com.example.data.models.ResponseNw;
+import com.example.data.models.RepositoryNw;
 import com.example.data.network.ApiInterface;
 import com.example.data.sharedpreference.SharedPreferenceHelper;
-import com.example.domain.model.Repo;
-import com.example.domain.model.Response;
+import com.example.domain.model.RepoDetail;
+import com.example.domain.model.Repository;
 import com.example.domain.repository.SampleRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import io.reactivex.Single;
 import io.reactivex.functions.Function;
@@ -37,25 +36,25 @@ public class SampleRepositoryImpl implements SampleRepository {
 
 
     @Override
-    public Single<List<Response>> fetchData() {
+    public Single<List<Repository>> fetchData() {
         return apiInterface.fetchData("java", "weekly")
-                .map(new Function<List<ResponseNw>, List<Response>>() {
+                .map(new Function<List<RepositoryNw>, List<Repository>>() {
                     @Override
-                    public List<Response> apply(List<ResponseNw> responseNws) throws Exception {
-                        List<Response> responseList = new ArrayList<>();
+                    public List<Repository> apply(List<RepositoryNw> repositoryNws) throws Exception {
+                        List<Repository> repositoryList = new ArrayList<>();
 
-                        for (ResponseNw responseNw : responseNws) {
-                            Response response = new Response(responseNw.getUsername(),
-                                    responseNw.getName(),
-                                    responseNw.getType(),
-                                    responseNw.getUrl(),
-                                    responseNw.getAvatar(),
-                                    new Repo(responseNw.getRepo().getName(),
-                                            responseNw.getRepo().getDescription(), responseNw.getRepo().getUrl()));
-                            responseList.add(response);
+                        for (RepositoryNw repositoryNw : repositoryNws) {
+                            Repository repository = new Repository(repositoryNw.getUsername(),
+                                    repositoryNw.getName(),
+                                    repositoryNw.getType(),
+                                    repositoryNw.getUrl(),
+                                    repositoryNw.getAvatar(),
+                                    new RepoDetail(repositoryNw.getRepo().getName(),
+                                            repositoryNw.getRepo().getDescription(), repositoryNw.getRepo().getUrl()));
+                            repositoryList.add(repository);
                         }
 
-                        return responseList;
+                        return repositoryList;
                     }
                 });
     }

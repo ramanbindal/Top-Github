@@ -1,18 +1,30 @@
-package com.example.domain.model;
+package com.example.data.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Response {
+public class RepositoryNw {
 
+    @SerializedName("username")
+    @Expose
     public String username;
+    @SerializedName("name")
+    @Expose
     public String name;
+    @SerializedName("type")
+    @Expose
     public String type;
+    @SerializedName("url")
+    @Expose
     public String url;
+    @SerializedName("avatar")
+    @Expose
     public String avatar;
-    public Repo repo;
+    @SerializedName("repoDetail")
+    @Expose
+    public RepoDetailNw repo;
 
-    public Response(String username, String name, String type, String url, String avatar, Repo repo) {
+    public RepositoryNw(String username, String name, String type, String url, String avatar, RepoDetailNw repo) {
         this.username = username;
         this.name = name;
         this.type = type;
@@ -61,11 +73,11 @@ public class Response {
         this.avatar = avatar;
     }
 
-    public Repo getRepo() {
+    public RepoDetailNw getRepo() {
         return repo;
     }
 
-    public void setRepo(Repo repo) {
+    public void setRepo(RepoDetailNw repo) {
         this.repo = repo;
     }
 }

@@ -1,20 +1,14 @@
-package com.example.data.models;
+package com.example.domain.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RepoNw {
-    @SerializedName("name")
-    @Expose
+public class RepoDetail {
     public String name;
-    @SerializedName("description")
-    @Expose
     public String description;
-    @SerializedName("url")
-    @Expose
     public String url;
 
-    public RepoNw(String name, String description, String url) {
+    public RepoDetail(String name, String description, String url) {
         this.name = name;
         this.description = description;
         this.url = url;
