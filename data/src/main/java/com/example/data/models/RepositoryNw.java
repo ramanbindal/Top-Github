@@ -20,7 +20,7 @@ public class RepositoryNw {
     @SerializedName("avatar")
     @Expose
     public String avatar;
-    @SerializedName("repoDetail")
+    @SerializedName("repo")
     @Expose
     public RepoDetailNw repo;
 

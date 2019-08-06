@@ -42,7 +42,7 @@ public class AppModule {
     @Provides
     @Singleton
     ApiInterface provideApiInterface() {
-        return ApiClient.getClient(context).create(ApiInterface.class);
+        return ApiClient.getInstance(context).create(ApiInterface.class);
     }
 
     @Provides

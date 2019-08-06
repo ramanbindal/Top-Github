@@ -1,6 +1,8 @@
 package com.example.data.network;
 
 import android.content.Context;
+import android.net.NetworkInfo;
+import android.util.Log;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -20,42 +22,106 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ApiClient {
-    private static String SERVER_BASE_URL = "https://github-trending-api.now.sh";
-    private static Retrofit retrofit = null;
 
+    private static String TAG = ApiClient.class.getSimpleName();
+    private static Retrofit retrofit = null, mCachedRetrofit;
+    private static int REQUEST_TIMEOUT = 60;
+    private static OkHttpClient okHttpClient;
+    private static final String BASE_URL = "https://github-trending-api.now.sh";
+    private static Context mContext;
+    private static final String HEADER_CACHE_CONTROL = "Cache-Control";
+    private static final String HEADER_PRAGMA = "Pragma";
 
-    public static Retrofit getClient(Context context) {
+    public static Retrofit getInstance(Context context) {
+        mContext = context;
+
+        if (okHttpClient == null)
+            initOkHttp();
+
         if (retrofit == null) {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-            File httpCacheDirectory = new File(context.getCacheDir(), "offlineCache");
-
-            //10 MB
-            Cache cache = new Cache(httpCacheDirectory, 10 * 1024 * 1024);
-
-//            OkHttpClient client = new OkHttpClient.Builder()
-//                    .addInterceptor(interceptor)
-//                    .connectTimeout(3, TimeUnit.MINUTES)
-//                    .readTimeout(3, TimeUnit.MINUTES)
-//                    .build();
-
-            OkHttpClient httpClient = new OkHttpClient.Builder()
-                    .cache(cache)
-                    .addInterceptor(interceptor)
-                    .addNetworkInterceptor(provideCacheInterceptor())
-                    .addInterceptor(provideOfflineCacheInterceptor())
-                    .build();
-
             retrofit = new Retrofit.Builder()
-                    .baseUrl(SERVER_BASE_URL)
-                    .client(httpClient)
+                    .baseUrl(BASE_URL)
+                    .client(okHttpClient)
+
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
+
     }
+
+
+
+    private static void initOkHttp() {
+
+
+        OkHttpClient.Builder httpClient = new OkHttpClient().newBuilder()
+                .connectTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS);
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        httpClient.addInterceptor(interceptor)
+                .addInterceptor(provideOfflineCacheInterceptor())
+                .addNetworkInterceptor(provideCacheInterceptor())
+                .cache(provideCache());
+
+        httpClient.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request original = chain.request();
+                Request.Builder requestBuilder = original.newBuilder()
+                        .addHeader("Accept", "application/json")
+                        .addHeader("Request-Type", "Android")
+                        .addHeader("Content-Type", "application/json");
+
+                Request request = requestBuilder.build();
+                return chain.proceed(request);
+            }
+        });
+
+        okHttpClient = httpClient.build();
+    }
+
+    private static Cache provideCache () {
+        Cache cache = null;
+        try {
+            cache = new Cache( new File(mContext.getCacheDir(), "http-cache" ),
+                    10 * 1024 * 1024 ); // 10 MB
+        }
+        catch (Exception e) {
+            Log.e( "Error", e.toString() );
+        }
+        return cache;
+    }
+
+    private static Interceptor provideOfflineCacheInterceptor() {
+        return new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+
+                if (!isConnected()) {
+                    CacheControl cacheControl = new CacheControl.Builder()
+                            .maxStale(7, TimeUnit.DAYS)
+                            .build();
+
+                    request = request.newBuilder()
+                            .removeHeader(HEADER_PRAGMA)
+                            .removeHeader(HEADER_CACHE_CONTROL)
+                            .cacheControl(cacheControl)
+                            .build();
+                }
+
+                return chain.proceed(request);
+            }
+        };
+    }
+
+
     private static Interceptor provideCacheInterceptor() {
 
         return new Interceptor() {
@@ -73,6 +139,9 @@ public class ApiClient {
                             .maxStale(1, TimeUnit.DAYS)
                             .build();
 
+                    /*return originalResponse.newBuilder()
+                            .header("Cache-Control", "public, max-stale=" + 60 * 60 * 24)
+                            .build();*/
 
 
                     request = request.newBuilder()
@@ -88,27 +157,20 @@ public class ApiClient {
         };
 
     }
-    private static Interceptor provideOfflineCacheInterceptor() {
 
-        return new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                try {
-                    return chain.proceed(chain.request());
-                } catch (Exception e) {
+    //check internet connectivity
+    public static boolean isConnected() {
+        try {
+            android.net.ConnectivityManager e = (android.net.ConnectivityManager) mContext.getSystemService(
+                    Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetwork = e.getActiveNetworkInfo();
+            final boolean b = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+            return b;
+        } catch (Exception e) {
+            Log.w(TAG, e.toString());
+        }
 
-
-                    CacheControl cacheControl = new CacheControl.Builder()
-                            .onlyIfCached()
-                            .maxStale(1, TimeUnit.DAYS)
-                            .build();
-
-                    Request offlineRequest = chain.request().newBuilder()
-                            .cacheControl(cacheControl)
-                            .build();
-                    return chain.proceed(offlineRequest);
-                }
-            }
-        };
+        return false;
     }
+
 }

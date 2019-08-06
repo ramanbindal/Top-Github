@@ -3,7 +3,9 @@ package com.example.domain.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RepoDetail {
+import java.io.Serializable;
+
+public class RepoDetail implements Serializable {
     public String name;
     public String description;
     public String url;

@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MainNav
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
         repoListAdapter = new RepoListAdapter(respons, this, this);
+        recyclerView.setAdapter(repoListAdapter);
     }
 
     @Override

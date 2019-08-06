@@ -8,6 +8,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginRight="10dp"
+    app:cardUseCompatPadding="true"
     app:cardCornerRadius="8dp">
 
     <RelativeLayout
@@ -26,7 +27,7 @@
 
         <TextView
             android:id="@+id/repo_list_rv_item_repo_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_toRightOf="@+id/repo_list_rv_item_repo_image"
