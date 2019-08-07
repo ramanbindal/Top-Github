@@ -11,7 +11,7 @@ public interface SampleRepository {
 
     Single<List<Repository>> fetchData();
 
+    Single<Repository> fetchImage(Repository repository) ;
 
 
-
-}
+    }

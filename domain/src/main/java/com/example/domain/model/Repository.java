@@ -9,6 +9,7 @@ public class Repository implements Serializable {
     public String type;
     public String url;
     public String avatar;
+    public String imagePath;
     public RepoDetail repoDetail;
 
     public Repository(String username, String name, String type, String url, String avatar, RepoDetail repoDetail) {
@@ -18,6 +19,14 @@ public class Repository implements Serializable {
         this.url = url;
         this.avatar = avatar;
         this.repoDetail = repoDetail;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public Repository() {
@@ -69,5 +78,18 @@ public class Repository implements Serializable {
 
     public void setRepoDetail(RepoDetail repoDetail) {
         this.repoDetail = repoDetail;
+    }
+
+    @Override
+    public String toString() {
+        return "Repository{" +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", repoDetail=" + repoDetail +
+                '}';
     }
 }
