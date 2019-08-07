@@ -20,6 +20,9 @@ public class Repository implements Serializable {
         this.repoDetail = repoDetail;
     }
 
+    public Repository() {
+    }
+
     public String getUsername() {
         return username;
     }
